@@ -1002,7 +1002,7 @@ uint16_t Position()
         return _lastPosition;            //ส่งค่าที่อ่านได้จากการเฉลี่ยแล้วกลับไปยังฟังก์ชั้น readline
     }
 
-int error_F()
+float error_F()
     {
         present_position = Position() / ((numSensor - 1) * 10) ;
         setpoint = 50.0;
@@ -1011,13 +1011,13 @@ int error_F()
         I = 0;
         previous_I = 0;
         previous_error = 0;
-        //P = errors;
+        P = errors;
         I = I + previous_I;
         D = errors - previous_error ;            
         previous_I=I;
         previous_error=errors  ;  
         //Serial.println(errors);
-        return errors;
+        return P       ;
                              
     }
 
@@ -1061,7 +1061,7 @@ uint16_t PositionB()
         return _lastPosition;            //ส่งค่าที่อ่านได้จากการเฉลี่ยแล้วกลับไปยังฟังก์ชั้น readline
     }
 
-int error_B()
+float error_B()
     {
         present_position = PositionB() / ((numSensor - 1) * 10) ;
         setpoint = 50.0;
@@ -1070,13 +1070,13 @@ int error_B()
         I = 0;
         previous_I = 0;
         previous_error = 0;
-        //P = errors;
+        P = errors;
         I = I + previous_I;
         D = errors - previous_error ;            
         previous_I=I;
         previous_error=errors  ;  
-        //Serial.println(errors);
-        return errors;
+        Serial.println(errors);
+        return P;
                              
     }
 
